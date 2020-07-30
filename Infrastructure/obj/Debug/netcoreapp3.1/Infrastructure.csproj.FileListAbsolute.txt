@@ -1,0 +1,15 @@
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Domain.dll
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Infrastructure.dll
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Infrastructure.pdb
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Domain.pdb
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
