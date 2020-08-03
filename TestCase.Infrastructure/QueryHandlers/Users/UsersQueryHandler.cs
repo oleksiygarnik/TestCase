@@ -31,7 +31,7 @@ namespace TestCase.Infrastructure.QueryHandlers.Users
                 .Select(user => new UserDto()
                 {
                     Id = user.Id,
-                    Username = user.Username,
+                    UserName = user.UserName,
                     Email = user.Email
                 })
                 .Paginate(request, cancellationToken);

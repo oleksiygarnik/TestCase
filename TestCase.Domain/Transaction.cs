@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TestCase.Domain.Abstract;
+﻿using Domain;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace TestCase.Domain
 {
     public class Transaction : Entity
     {
+        [JsonConverter(typeof(StringEnumConverter))]
         public TransactionStatus Status { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public TransactionType Type { get; set; }
 
         public string ClientName { get; set; }

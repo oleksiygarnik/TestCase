@@ -1,10 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TestCase.Application.Auth.Common
 {
-    class AccessToken
+    public sealed class AccessToken
     {
+        public string Token { get; }
+        public int ExpiresIn { get; }
+
+        public AccessToken(string token, int expiresIn)
+        {
+            if (string.IsNullOrEmpty(token))
+                throw new ArgumentException("message", nameof(token));
+
+            Token = token;
+            ExpiresIn = expiresIn;
+        }
     }
 }

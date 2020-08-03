@@ -4,7 +4,8 @@ using System.Text;
 
 namespace TestCase.Application.Auth.Exceptions
 {
-    class InvalidTokenException
+    public sealed class InvalidTokenException : Exception
     {
+        public InvalidTokenException(string tokenName) : base($"Invalid {tokenName} token.") { }
     }
 }

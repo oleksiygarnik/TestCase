@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace TestCase.Domain.Abstract
+namespace Domain
 {
     public abstract class Entity
     {
@@ -12,12 +12,8 @@ namespace TestCase.Domain.Abstract
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-
         protected Entity()
         {
-            CreatedAt = UpdatedAt = DateTime.Now;
         }
 
         public override int GetHashCode()
@@ -28,12 +24,12 @@ namespace TestCase.Domain.Abstract
             return _hashCode.Value;
         }
 
-        public override bool Equals(object obj) 
+        public override bool Equals(object obj)
             => obj is Entity other
                 && GetType() == other.GetType()
                 && (Id.Equals(other.Id) || ReferenceEquals(this, other));
 
-     
+
 
     }
 }

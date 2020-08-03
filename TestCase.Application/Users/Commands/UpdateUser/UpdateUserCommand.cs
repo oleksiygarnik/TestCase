@@ -14,7 +14,7 @@ namespace TestCase.Application.Users.Commands.UpdateUser
         public int Id { get; set; }
 
         [DataMember]
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         [DataMember]
         public string Email { get; set; }

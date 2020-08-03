@@ -13,3 +13,7 @@ C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1
 C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
 C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
 C:\Users\Алёша\source\repos\TestCase\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\Application.dll
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Application.dll
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\Application.pdb
+C:\Users\Алёша\source\repos\TestCase\Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Application.pdb

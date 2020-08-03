@@ -105,6 +105,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -175,6 +181,10 @@
               "target": "Package",
               "version": "[0.95.3, )"
             },
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[15.0.5, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[9.0.1, )"
@@ -188,6 +198,10 @@
               "version": "[3.1.6, )"
             },
             "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.Extensions.FileProviders.Abstractions": {
               "target": "Package",
               "version": "[3.1.6, )"
             },
@@ -244,7 +258,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Алёша\\source\\repos\\TestCase\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Алёша\\source\\repos\\TestCase\\Domain\\Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -255,6 +273,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -322,11 +346,23 @@
               "target": "Package",
               "version": "[29.0.2, )"
             },
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[15.0.5, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[8.1.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.Extensions.FileProviders.Abstractions": {
               "target": "Package",
               "version": "[3.1.6, )"
             }

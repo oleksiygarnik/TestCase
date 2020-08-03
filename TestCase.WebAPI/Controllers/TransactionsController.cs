@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using TestCase.Application.Transactions.Commands.ExportTransactions;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
+using TestCase.Application.Transactions.Commands.DeleteTransaction;
 using TestCase.Application.Transactions.Commands.ImportTransactions;
+using TestCase.Application.Transactions.Commands.UpdateTransaction;
 using TestCase.Application.Transactions.Queries;
-using TestCase.Domain;
 using TestCase.WebAPI.Controllers.Abstract;
 
 namespace TestCase.WebAPI.Controllers
 {
+
     [Route("api/transactions")]
     public class TransactionsController : MediatorController
     {
@@ -25,125 +22,126 @@ namespace TestCase.WebAPI.Controllers
 
         }
 
+        /// <summary>
+        /// Gets collection of transactions from database
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns>Collection of transaction</returns>
+        /// <response code="200">Returns collection of transactions from database</response>
+        /// <response code="400">If the query is null</response>
+        /// <response code="404">If server can't find neccessary resource</response>
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [Produces(typeof(IEnumerable<Transaction>))]
+        [Produces(typeof(IEnumerable<TransactionDto>))]
         public Task<IActionResult> GetTransactions(TransactionsQuery query) => ExecuteQuery(query);
 
-        [HttpPost]
+        /// <summary>
+        /// Export transactions in .xlsx
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns>File with extension .xlsx with transactions</returns>
+        /// <response code="200">Returns collection of transactions in .xlsx file</response>
+        /// <response code="400">If the query is null</response>
+        /// <response code="404">If server can't find neccessary resource</response>
+        [HttpGet("export")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.Created)]
-        [Produces(typeof(string))]
-        public async Task<IActionResult> ImportTransactions()
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [Produces(typeof(FileResult))]
+        public async Task<IActionResult> ExportTransactions(ExportTransactionsQuery query)
         {
-            var command = new ImportTransactionsCommand()
-            {
-                File = Request.Form.Files[0]
-            };
+            if (query is null)
+                return BadRequest(); 
 
-            var transactions = await _mediator.Send(command);
+            var workbook = await _mediator.Send(query);
 
-            return CreatedAtAction("Import Transactions", transactions);
-        }
-
-        [HttpPost]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType((int)HttpStatusCode.Created)]
-        [Produces(typeof(string))]
-        public async Task<IActionResult> ExportTransactions(ExportTransactionsCommand command)
-        {
-            if (command is null)
-                throw new ArgumentNullException(nameof(command));
-
-            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            string fileName = "authors.xlsx";
-
-            var workbook = await _mediator.Send(command);
+            if (workbook is null)
+                return NotFound();
 
             using (var stream = new MemoryStream())
             {
                 workbook.SaveAs(stream);
                 var content = stream.ToArray();
-                return File(content, contentType, fileName);
+                return File(content, MIMEType.Types[".xlsx"], "transactions.xlsx");
             }
         }
 
-
-
-        public async Task<IActionResult> Download(string filename)
+        /// <summary>
+        /// Import transactions
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns>Dictionary with ids which were added and updated</returns>
+        /// <response code="200">Returns dictionary with ids which were added and updated</response>
+        /// <response code="400">If the file is null</response>
+        /// <response code="404">If server can't find neccessary resource</response>
+        [HttpPost("import")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [Produces(typeof(Dictionary<string, List<int>>))]
+        public async Task<IActionResult> ImportTransactions(IFormFile file)
         {
-            if (filename == null)
-                return Content("filename not present");
-
-            var path = Path.Combine(
-                           Directory.GetCurrentDirectory(),
-                           "wwwroot", filename);
-
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
+            var command = new ImportTransactionsCommand()
             {
-                await stream.CopyToAsync(memory);
-            }
-            memory.Position = 0;
-            return File(memory, GetContentType(path), Path.GetFileName(path));
-        }
-
-        private string GetContentType(string path)
-        {
-            var types = GetMimeTypes();
-            var ext = Path.GetExtension(path).ToLowerInvariant();
-            return types[ext];
-        }
-
-        private Dictionary<string, string> GetMimeTypes()
-        {
-            return new Dictionary<string, string>
-            {
-                {".txt", "text/plain"},
-                {".pdf", "application/pdf"},
-                {".doc", "application/vnd.ms-word"},
-                {".docx", "application/vnd.ms-word"},
-                {".xls", "application/vnd.ms-excel"},
-                {".xlsx", "application/vnd.openxmlformatsofficedocument.spreadsheetml.sheet"},  
-                {".png", "image/png"},
-                {".jpg", "image/jpeg"},
-                {".jpeg", "image/jpeg"},
-                {".gif", "image/gif"},
-                {".csv", "text/csv"}
+                File = file
             };
+
+            var statesIds = await _mediator.Send(command);
+
+            return Ok(statesIds);
         }
-        //    [HttpPost, DisableRequestSizeLimit]
-        //    public IActionResult Upload()
-        //    {
-        //        try
-        //        {
-        //            var file = Request.Form.Files[0];
-        //            var folderName = Path.Combine("Resources", "Images");
-        //            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-        //            if (file.Length > 0)
-        //            {
-        //                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-        //                var fullPath = Path.Combine(pathToSave, fileName);
-        //                var dbPath = Path.Combine(folderName, fileName);
 
-        //                using (var stream = new FileStream(fullPath, FileMode.Create))
-        //                {
-        //                    file.CopyTo(stream);
-        //                }
+        /// <summary>
+        /// Delete transaction by id from database
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns>Status code 204 - NoContent</returns>
+        /// <response code="204">Returns status code 204 if everything okey</response>
+        /// <response code="400">If the command is null</response>
+        /// <response code="404">If server can't find neccessary transaction with same id</response>
+        [HttpDelete("{Id}")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.NoContent)]
+        public async Task<IActionResult> DeleteTransaction(DeleteTransactionCommand command)
+        {
+            if (command is null)
+                return BadRequest();
 
-        //                return Ok(new { dbPath });
-        //            }
-        //            else
-        //            {
-        //                return BadRequest();
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return StatusCode(500, $"Internal server error: {ex}");
-        //        }
-        //    }
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Update transaction status in database
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns>Transaction that was updated with new transaction status</returns>
+        /// <response code="200">Returns transaction that was updated with new value</response>
+        /// <response code="400">If the command is null</response>
+        /// <response code="404">If server can't find neccessary transaction with same id</response>
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [Produces(typeof(TransactionDto))]
+        public async Task<IActionResult> UpdateTransaction([FromBody]  UpdateTransactionStatusCommand command)
+        {
+            if (command is null)
+                return BadRequest();
+
+            return Json(await _mediator.Send(command));
+        }
+    }
+
+    public static class MIMEType
+    {
+        public static Dictionary<string, string> Types =>
+            new Dictionary<string, string>()
+            {
+                [".xlsx"] = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            };
     }
 }

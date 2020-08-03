@@ -9,3 +9,9 @@ C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\bin\Debug\netc
 C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\obj\Debug\netcoreapp3.1\TestCase.Infrastructure.csproj.CopyComplete
 C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\obj\Debug\netcoreapp3.1\TestCase.Infrastructure.dll
 C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\obj\Debug\netcoreapp3.1\TestCase.Infrastructure.pdb
+C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\bin\Debug\netcoreapp3.1\Application.dll
+C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Application.dll
+C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\bin\Debug\netcoreapp3.1\Application.pdb
+C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Алёша\source\repos\TestCase\TestCase.Infrastructure\bin\Debug\netcoreapp3.1\TestCase.Application.pdb

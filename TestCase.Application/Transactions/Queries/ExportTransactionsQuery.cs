@@ -1,15 +1,12 @@
 ﻿using ClosedXML.Excel;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 using TestCase.Domain;
 
-namespace TestCase.Application.Transactions.Commands.ExportTransactions
+namespace TestCase.Application.Transactions.Queries
 {
     [DataContract]
-    public class ExportTransactionsCommand : IRequest<XLWorkbook>
+    public class ExportTransactionsQuery : IRequest<XLWorkbook>
     {
         [DataMember]
         public TransactionStatus? Status { get; set; }

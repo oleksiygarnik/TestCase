@@ -6,3 +6,6 @@ C:\Users\Алёша\source\repos\TestCase\TestCase.Domain\obj\Debug\netcoreapp3.
 C:\Users\Алёша\source\repos\TestCase\TestCase.Domain\obj\Debug\netcoreapp3.1\TestCase.Domain.AssemblyInfo.cs
 C:\Users\Алёша\source\repos\TestCase\TestCase.Domain\obj\Debug\netcoreapp3.1\TestCase.Domain.dll
 C:\Users\Алёша\source\repos\TestCase\TestCase.Domain\obj\Debug\netcoreapp3.1\TestCase.Domain.pdb
+C:\Users\Алёша\source\repos\TestCase\TestCase.Domain\bin\Debug\netcoreapp3.1\Domain.dll
+C:\Users\Алёша\source\repos\TestCase\TestCase.Domain\bin\Debug\netcoreapp3.1\Domain.pdb
+C:\Users\Алёша\source\repos\TestCase\TestCase.Domain\obj\Debug\netcoreapp3.1\TestCase.Domain.csproj.CopyComplete

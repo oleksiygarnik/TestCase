@@ -7,19 +7,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B6B53930-C341-4723-AAD4-F916600C51BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCase.Domain", "TestCase.Domain\TestCase.Domain.csproj", "{B8572F13-88EF-43FF-8D64-5DBA14189DA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCase.Domain", "TestCase.Domain\TestCase.Domain.csproj", "{B8572F13-88EF-43FF-8D64-5DBA14189DA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCase.Infrastructure", "TestCase.Infrastructure\TestCase.Infrastructure.csproj", "{8C890AA7-12C2-4C77-AC64-CC843264F106}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCase.Infrastructure", "TestCase.Infrastructure\TestCase.Infrastructure.csproj", "{8C890AA7-12C2-4C77-AC64-CC843264F106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCase.Application", "TestCase.Application\TestCase.Application.csproj", "{B525E7BE-00F4-4835-BEF8-E4B4C34DF47E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCase.Application", "TestCase.Application\TestCase.Application.csproj", "{B525E7BE-00F4-4835-BEF8-E4B4C34DF47E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCase.WebAPI", "TestCase.WebAPI\TestCase.WebAPI.csproj", "{67C3C575-4A03-4A2F-BC61-86BCACFDE4EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCase.WebAPI", "TestCase.WebAPI\TestCase.WebAPI.csproj", "{67C3C575-4A03-4A2F-BC61-86BCACFDE4EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{2357D710-6FB1-45FF-ACBD-CD877F75B1D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{2357D710-6FB1-45FF-ACBD-CD877F75B1D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{000C9101-36B0-4187-8F1D-DD7F1552BF1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{000C9101-36B0-4187-8F1D-DD7F1552BF1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5445A3C2-3BFE-424E-96C0-BB957199E6FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{5445A3C2-3BFE-424E-96C0-BB957199E6FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F091B11D-F746-41A0-A956-DB0F866EA96D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

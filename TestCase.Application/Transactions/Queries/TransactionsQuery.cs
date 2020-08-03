@@ -8,11 +8,9 @@ using TestCase.Domain;
 
 namespace TestCase.Application.Transactions.Queries
 {
+    [DataContract]
     public class TransactionsQuery : PagedRequest<TransactionDto>
     {
-        //[DataMember]
-        //public SortDirection? SortDirection { get; set; }
-
         [DataMember]
         public TransactionStatus? Status { get; set; }
 

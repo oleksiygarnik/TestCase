@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestCase.Application.Auth.DTO
+﻿namespace TestCase.Application.Auth.DTO
 {
     public sealed class RevokeRefreshTokenDto
     {

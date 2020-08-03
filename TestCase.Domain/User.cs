@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TestCase.Domain.Abstract;
+﻿using Domain;
+using System;
 
 namespace TestCase.Domain
 {
     public class User : Entity
     {
         public string Email { get; set; }
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public string Salt { get; set; }
+
+        public User()
+        {
+
+        }
 
         public User(string email, string username, string password, string salt)
         {
@@ -27,7 +30,7 @@ namespace TestCase.Domain
                 throw new ArgumentException("message", nameof(salt));
 
             Email = email;
-            Username = username;
+            UserName = username;
             Password = password;
             Salt = salt;
         }
@@ -37,7 +40,7 @@ namespace TestCase.Domain
             if (string.IsNullOrEmpty(username))
                 throw new ArgumentException("message", nameof(username));
 
-            Username = username;
+            UserName = username;
         }
 
         public void ChangeEmail(string email)

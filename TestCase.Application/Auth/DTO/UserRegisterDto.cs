@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using TestCase.Application.Users.Queries;
 
 namespace TestCase.Application.Auth.DTO
 {
-    class UserRegisterDto
+    public sealed class UserRegisterDto : UserDto
     {
+        public string Password { get; set; }
     }
 }

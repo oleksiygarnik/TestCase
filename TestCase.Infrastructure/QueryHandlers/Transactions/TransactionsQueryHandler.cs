@@ -13,7 +13,6 @@ using TestCase.Infrastructure.QueryHandlers.Extensions;
 
 namespace TestCase.Infrastructure.QueryHandlers.Transactions
 {
-
     public class TransactionsQueryHandler : IRequestHandler<TransactionsQuery, PagedResponse<TransactionDto>>
     {
         private readonly TransactionsContext _context;

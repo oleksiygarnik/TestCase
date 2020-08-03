@@ -4,7 +4,8 @@ using System.Text;
 
 namespace TestCase.Application.Auth.Exceptions
 {
-    class ExpiredRefreshTokenException
+    public sealed class ExpiredRefreshTokenException : Exception
     {
+        public ExpiredRefreshTokenException() : base("Refresh token expired.") { }
     }
 }

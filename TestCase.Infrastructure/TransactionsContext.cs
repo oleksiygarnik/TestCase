@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using TestCase.Domain;
+using TestCase.Infrastructure.EntityTypes;
 
 namespace TestCase.Infrastructure
 {
@@ -17,7 +18,7 @@ namespace TestCase.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Configure();
             modelBuilder.Seed();
 
             base.OnModelCreating(modelBuilder);

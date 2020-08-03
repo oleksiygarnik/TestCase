@@ -12,3 +12,4 @@ C:\Users\Алёша\source\repos\TestCase\TestCase.Application\obj\Debug\netcore
 C:\Users\Алёша\source\repos\TestCase\TestCase.Application\bin\Debug\netcoreapp3.1\TestCase.Domain.dll
 C:\Users\Алёша\source\repos\TestCase\TestCase.Application\bin\Debug\netcoreapp3.1\TestCase.Domain.pdb
 C:\Users\Алёша\source\repos\TestCase\TestCase.Application\bin\Debug\netcoreapp3.1\Application.dll
+C:\Users\Алёша\source\repos\TestCase\TestCase.Application\bin\Debug\netcoreapp3.1\Application.pdb

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Security.Cryptography;
 
 namespace TestCase.Application.Auth
 {

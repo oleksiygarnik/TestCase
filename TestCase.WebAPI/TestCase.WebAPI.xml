@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestCase.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:TestCase.WebAPI.Controllers.AuthController.Login(TestCase.Application.Auth.DTO.UserLoginDto)">
+            <summary>
+            Auth user in system(Sign in)
+            </summary>
+            <param name="dto"></param>
+            <returns>AuthUserDto that contains information about user(UserDto) and token(AccessTokenDto)</returns>
+            <response code="200">Returns AuthUserDto that contains information about user(UserDto) and token(AccessTokenDto) </response>
+            <response code="400">If dto is null</response>
+            <response code="404">If server can't find neccessary user with same data(password, username)</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.RegisterController.Post(TestCase.Application.Auth.DTO.UserRegisterDto)">
+            <summary>
+            Register and auth user in system(Sign up and sign in)
+            </summary>
+            <param name="user"></param>
+            <returns>AuthUserDto that contains information about user(UserDto) and token(AccessTokenDto)</returns>
+            <response code="200">Returns AuthUserDto that contains information about user(UserDto) and token(AccessTokenDto) </response>
+            <response code="400">If dto is null</response>
+            <response code="404">If server can't find neccessary user with same data(password, username)</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.TokenController.Refresh(TestCase.Application.Auth.DTO.RefreshTokenDto)">
+            <summary>
+            Refresh jwt 
+            </summary>
+            <param name="dto"></param>
+            <returns>AccessTokenDto</returns>
+            <response code="200">Returns AccessTokenDto that contains informations about token and time when expires</response>
+            <response code="400">If the dto is null</response>
+            <response code="404">If server can't find neccessary resource</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.TokenController.RevokeRefreshToken(TestCase.Application.Auth.DTO.RevokeRefreshTokenDto)">
+            <summary>
+            Revoke jwt (logout) 
+            </summary>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.TransactionsController.GetTransactions(TestCase.Application.Transactions.Queries.TransactionsQuery)">
+            <summary>
+            Gets collection of transactions from database
+            </summary>
+            <param name="query"></param>
+            <returns>Collection of transaction</returns>
+            <response code="200">Returns collection of transactions from database</response>
+            <response code="400">If the query is null</response>
+            <response code="404">If server can't find neccessary resource</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.TransactionsController.ExportTransactions(TestCase.Application.Transactions.Queries.ExportTransactionsQuery)">
+            <summary>
+            Export transactions in .xlsx
+            </summary>
+            <param name="query"></param>
+            <returns>File with extension .xlsx with transactions</returns>
+            <response code="200">Returns collection of transactions in .xlsx file</response>
+            <response code="400">If the query is null</response>
+            <response code="404">If server can't find neccessary resource</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.TransactionsController.ImportTransactions(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Import transactions
+            </summary>
+            <param name="file"></param>
+            <returns>Dictionary with ids which were added and updated</returns>
+            <response code="200">Returns dictionary with ids which were added and updated</response>
+            <response code="400">If the file is null</response>
+            <response code="404">If server can't find neccessary resource</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.TransactionsController.DeleteTransaction(TestCase.Application.Transactions.Commands.DeleteTransaction.DeleteTransactionCommand)">
+            <summary>
+            Delete transaction by id from database
+            </summary>
+            <param name="command"></param>
+            <returns>Status code 204 - NoContent</returns>
+            <response code="204">Returns status code 204 if everything okey</response>
+            <response code="400">If the command is null</response>
+            <response code="404">If server can't find neccessary transaction with same id</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.TransactionsController.UpdateTransaction(TestCase.Application.Transactions.Commands.UpdateTransaction.UpdateTransactionStatusCommand)">
+            <summary>
+            Update transaction status in database
+            </summary>
+            <param name="command"></param>
+            <returns>Transaction that was updated with new transaction status</returns>
+            <response code="200">Returns transaction that was updated with new value</response>
+            <response code="400">If the command is null</response>
+            <response code="404">If server can't find neccessary transaction with same id</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.UserController.GetUsers(TestCase.Application.Users.Queries.UsersQuery)">
+            <summary>
+            Gets collection of users from database
+            </summary>
+            <param name="query"></param>
+            <returns>Collection of users</returns>
+            <response code="200">Returns collection of users from database</response>
+            <response code="400">If the query is null</response>
+            <response code="404">If server can't find neccessary resource</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.UserController.GetUserById(TestCase.Application.Users.Queries.UserByIdQuery)">
+            <summary>
+            Gets user by id from database
+            </summary>
+            <param name="query"></param>
+            <returns>User by id(integer type)</returns>
+            <response code="200">Returns user by id(integer type) from database</response>
+            <response code="400">If the query is null</response>
+            <response code="404">If server can't find neccessary user with same id</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.UserController.DeleteUser(TestCase.Application.Users.Commands.DeleteUser.DeleteUserCommand)">
+            <summary>
+            Delete user by id from database
+            </summary>
+            <param name="command"></param>
+            <returns>Status code 204 - NoContent</returns>
+            <response code="204">Returns status code 204 if everything okey</response>
+            <response code="400">If the command is null</response>
+            <response code="404">If server can't find neccessary user with same id</response>
+        </member>
+        <member name="M:TestCase.WebAPI.Controllers.UserController.UpdateUser(TestCase.Application.Users.Commands.UpdateUser.UpdateUserCommand)">
+            <summary>
+            Update user in database
+            </summary>
+            <param name="command"></param>
+            <returns>User that was updated with new values</returns>
+            <response code="200">Returns user that was updated with new values</response>
+            <response code="400">If the command is null</response>
+            <response code="404">If server can't find neccessary user with same id</response>
+        </member>
+    </members>
+</doc>

@@ -18,12 +18,12 @@ namespace TestCase.WebAPI.Controllers.Abstract
 
         protected async Task<IActionResult> ExecuteQuery<T>(IRequest<T> query)
         {
-            if (query == null)
+            if (query is null)
                 return BadRequest();
 
             var entity = await _mediator.Send(query);
 
-            if (entity == null)
+            if (entity is null)
                 return NotFound();
 
             return Json(entity);

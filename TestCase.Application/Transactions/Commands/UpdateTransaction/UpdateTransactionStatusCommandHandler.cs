@@ -42,8 +42,6 @@ namespace TestCase.Application.Transactions.Commands.UpdateTransaction
                 Type = transaction.Type,
                 ClientName = transaction.ClientName
             };
-
-            //AutoMapper
         }
     }
 }

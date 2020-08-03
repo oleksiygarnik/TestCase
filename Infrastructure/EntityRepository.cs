@@ -36,21 +36,6 @@ namespace Infrastructure
                 await Add(entity);
         }
 
-        public Task<int> Count<TEntity>(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken) where TEntity : class
-        {
-            return _context.Set<TEntity>()
-                .Where(predicate)
-                .CountAsync(cancellationToken);
-
-        }
-
-        public async Task<IEnumerable<TEntity>> Find<TEntity>(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken) where TEntity : class
-        {
-            return await _context.Set<TEntity>()
-                .Where(predicate)
-                .ToListAsync(cancellationToken);
-        }
-
         public async Task<IEnumerable<TEntity>> GetAll<TEntity>()
             where TEntity : class
             => await _context.Set<TEntity>().ToListAsync();
@@ -74,6 +59,23 @@ namespace Infrastructure
                 await Remove(entity);
         }
 
+        // with cancellationToken
+
+        public Task<int> Count<TEntity>(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken) where TEntity : class
+        {
+            return _context.Set<TEntity>()
+                .Where(predicate)
+                .CountAsync(cancellationToken);
+
+        }
+
+        public async Task<IEnumerable<TEntity>> Find<TEntity>(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken) where TEntity : class
+        {
+            return await _context.Set<TEntity>()
+                .Where(predicate)
+                .ToListAsync(cancellationToken);
+        }
+
         public async Task<TEntity> SingleOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken) where TEntity : class
         {
 
@@ -82,12 +84,33 @@ namespace Infrastructure
                 .SingleOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<TEntity> FirstOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+        public async Task<TEntity> FirstOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken) where TEntity : class
         {
 
             return await _context.Set<TEntity>()
                 .Where(predicate)
-                .FirstOrDefaultAsync();
+                .SingleOrDefaultAsync(cancellationToken);
+        }
+
+        // without cancellationToken
+        public Task<IEnumerable<TEntity>> Find<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+        {
+            return Find(predicate, CancellationToken.None);
+        }
+
+        public Task<int> Count<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+        {
+            return Count(predicate, CancellationToken.None);
+        }
+
+        public Task<TEntity> SingleOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+        {
+            return SingleOrDefault(predicate, CancellationToken.None);
+        }
+
+        public Task<TEntity> FirstOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity : class
+        {
+            return FirstOrDefault(predicate, CancellationToken.None);
         }
     }
 }

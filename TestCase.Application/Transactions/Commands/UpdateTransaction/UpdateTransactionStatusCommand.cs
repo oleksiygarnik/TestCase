@@ -11,7 +11,9 @@ namespace TestCase.Application.Transactions.Commands.UpdateTransaction
     [DataContract]
     public class UpdateTransactionStatusCommand : IRequest<TransactionDto>
     {
+        [DataMember]
         public int Id { get; set; }
+        [DataMember]
         public TransactionStatus Status { get; set; }
     }
 }

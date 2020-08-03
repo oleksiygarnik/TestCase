@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.Json.Serialization;
 
 namespace TestCase.Application.Auth.DTO
 {
-    public sealed class RefreshTokenDTO
+    public sealed class RefreshTokenDto
     {
-        public RefreshTokenDTO()
+        public RefreshTokenDto()
         {
             SigningKey = Environment.GetEnvironmentVariable("SecretJWTKey");
         }

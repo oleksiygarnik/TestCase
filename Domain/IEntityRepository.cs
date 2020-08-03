@@ -23,6 +23,7 @@ namespace Domain
         Task Remove<TEntity>(IEnumerable<TEntity> entities)
             where TEntity : class;
 
+        // with cancellationToken
         Task<IEnumerable<TEntity>> Find<TEntity>(Expression<Func<TEntity, bool>> predicate,
            CancellationToken cancellationToken)
            where TEntity : class;
@@ -38,5 +39,20 @@ namespace Domain
         Task<TEntity> FirstOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate,
           CancellationToken cancellationToken)
           where TEntity : class;
+
+        // without cancellationToken
+
+        Task<IEnumerable<TEntity>> Find<TEntity>(Expression<Func<TEntity, bool>> predicate) 
+            where TEntity : class;
+
+        Task<int> Count<TEntity>(Expression<Func<TEntity, bool>> predicate)
+            where TEntity : class;
+
+        Task<TEntity> SingleOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate)
+            where TEntity : class;
+
+        Task<TEntity> FirstOrDefault<TEntity>(Expression<Func<TEntity, bool>> predicate)
+            where TEntity : class;
+
     }
 }

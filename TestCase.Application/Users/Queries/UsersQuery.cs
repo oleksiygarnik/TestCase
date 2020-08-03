@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Application;
+using System.Runtime.Serialization;
 
 namespace TestCase.Application.Users.Queries
 {
-    class UsersQuery
+	[DataContract]
+    public class UsersQuery : PagedRequest<UserDto>
     {
-    }
+		[DataMember]
+		public string Username { get; set; }
+
+		[DataMember]
+		public string Email { get; set; }
+	}
 }

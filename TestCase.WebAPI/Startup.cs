@@ -1,22 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Domain;
-using Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Converters;
 using TestCase.Application.Transactions.Commands.ImportTransactions;
-using TestCase.Application.Transactions.Queries;
-using TestCase.Infrastructure;
+using TestCase.Infrastructure.QueryHandlers.Transactions;
 using TestCase.WebAPI.Extensions;
 
 namespace TestCase.WebAPI
@@ -30,29 +21,36 @@ namespace TestCase.WebAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             var application = typeof(ImportTransactionsCommand).Assembly;
-            var api = typeof(Startup).Assembly;
-            var infrastructure = typeof(TransactionsQuery).Assembly;
+            var infrastructure = typeof(TransactionsQueryHandler).Assembly;
 
-
-            services.AddMediatR(application, infrastructure);
-            services.AddDataAccess(Configuration);
-
-            services.Configure<FormOptions>(o => {
+            services.Configure<FormOptions>(o =>
+            {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
             });
 
+            services.RegisterCustomServices();
+            services.RegisterCustomValidators();
+
+            services.AddMediatR(application, infrastructure);
+            services.AddDataAccess(Configuration);
+
+            services.ConfigureJwt(Configuration);
+
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
+
+            services.AddSwagger();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -60,16 +58,27 @@ namespace TestCase.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseExceptionMiddleware();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+         
         }
     }
 }
